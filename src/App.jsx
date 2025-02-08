@@ -12,8 +12,8 @@ function App() {
   }
   return (
     <>
-      < Header />
-      <button className="bg-[#646669] rounded-lg px-5" onClick={handleToggle}>{isKanbanView ? "List View": "Kanban View"}</button>
+      < Header handleToggle={handleToggle} isKanbanView={isKanbanView}/>
+      
       {isKanbanView ? <KanbanViewContainer /> : <ListViewContainer />}
     </>
   )

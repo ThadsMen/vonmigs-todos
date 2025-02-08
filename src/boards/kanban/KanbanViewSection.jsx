@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useDrop } from 'react-dnd';
 import { ItemTypes } from './dragtypes';
@@ -17,14 +18,14 @@ function KanbanSection(props) {
   )
   return (
     <div 
-    className = "w-80 h-screen border-2 border-double border-[#94603F] rounded-[1vw]"
+    className = "w-80 h-screen border-2 border-[#94603F] rounded-[1vw]"
     ref={drop}
     >
       {status}
-      {isOver && (
+{/*       {isOver && (
         <div className="h-full w-full opacity-0.5 bg-yellow-300">
         </div>
-      )}
+      )} */}
        {taskIds.map((taskId)=>(
         <KanbanViewItem task={tasks[taskId]} key={taskId}/>
        ))}

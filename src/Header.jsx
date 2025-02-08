@@ -1,8 +1,11 @@
+/* eslint-disable react/prop-types */
 import { CgAddR } from "react-icons/cg";
 import { VscAccount, VscBellDot, VscComment } from "react-icons/vsc";
 import { IconContext } from "react-icons";
 
-function Header() {
+function Header(props) {
+
+  const {handleToggle, isKanbanView} = props
     return (
         <>
         <div className="flex flex-row justify-between items-center ">
@@ -17,6 +20,7 @@ function Header() {
               <IconContext.Provider value = {{size: "25px"}}> 
                 <button>< VscComment/></button>
               </IconContext.Provider>
+              <button className="bg-[#646669] rounded-lg px-5" onClick={handleToggle}>{isKanbanView ? "List View": "Kanban View"}</button>
           </div>
           <IconContext.Provider value = {{size: "50px"}}> 
             <button><CgAddR/></button>

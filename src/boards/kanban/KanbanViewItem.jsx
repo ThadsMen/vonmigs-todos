@@ -16,14 +16,18 @@ function KanbanViewItem(props) {
     <div
     ref={drag}
     style={{
-      opacity: isDragging ? 0.5 : 1,
+      opacity: isDragging ? 1 : 1,
       fontSize: 25,
       fontWeight: 'bold',
       cursor: 'move',
     }}
-    className = "border-2 border-double border-[#94603F]"
+    className = "border-4 border-[#94603F]  rounded-[1vw] mb-8 mx-2 h-32"
     >
-      {task.title}
+
+      <div>
+        <h1>{task.title}</h1>
+        <p>{task.description}</p>
+      </div>
     </div>
   );
 }

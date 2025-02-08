@@ -1,0 +1,6 @@
+- Create good looking toggle button
+- Create Kanban Board with drag/drop functionality
+- Set up CRUD operations on mock data
+- Set up SQL database and design tables
+- Set up backend server and api endpoints
+- Use cloud services

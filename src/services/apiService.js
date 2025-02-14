@@ -1,3 +1,4 @@
+import axios from 'axios'
 export function fetchTodos (){
     return  [
         {
@@ -43,6 +44,28 @@ export function fetchTodos (){
       ];
 }
 
-export function fetchStatuses(){
-  return ['Not Started','In Progress','Completed','Cancelled']
+export async function getTasks (){
+  try{
+    const response = await axios.get('http://localhost:3000/tasks')
+    return response.data
+  } catch(error){
+    console.log(error)
+  }
+}
+export async function getSections (){
+  try{
+    const response = await axios.get('http://localhost:3000/sections')
+    return response.data
+  } catch(error){
+    console.log(error)
+  }
+}
+
+export async function getBoardData(){
+  try{
+    const response = await axios.get('http://localhost:3000/boardData')
+    return response.data
+  }catch(error){
+    console.log(error)
+  }
 }

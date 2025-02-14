@@ -2,9 +2,9 @@
 
 
 function ListViewItem(props) {
-    const { task, key } = props;
+    const { task } = props;
     return(
-        <li key={key} className="flex justify-between gap-x-6 py-5">
+        <li className="flex justify-between gap-x-6 py-5">
           <div className="flex min-w-0 gap-x-4">
             <div className="min-w-0 flex-auto">
               <p className="text-sm/6 font-semibold text-[#875B3E]">{task.title}</p>

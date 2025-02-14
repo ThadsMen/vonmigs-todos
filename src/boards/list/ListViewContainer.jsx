@@ -1,20 +1,19 @@
 import { useState, useEffect } from 'react'
 import ListViewItem from "./ListViewItem";
-import { fetchTodos } from "../../services/apiService";
+import { getTasks } from "../../services/apiService";
 
 function ListViewContainer(){
 
-  const [todos, setTodos] = useState([]);
+  const [tasks, setTasks] = useState([]);
 
   useEffect(()=>{
-    const data = fetchTodos();
-    setTodos(data);
+    getTasks().then((data)=>setTasks(data));
   }, [])
   
   return (
     <ul role="list" className="divide-y divide-[#646669]">
-      {todos.map((task) => (
-        < ListViewItem task={task} key={task.task_id} />
+      {tasks.map((task) => (
+        < ListViewItem task={task} key={task.id}/>
       ))}
     </ul>
   )

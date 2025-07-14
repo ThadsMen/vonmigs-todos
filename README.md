@@ -1,5 +1,5 @@
 # Vonmigs Todos
-Created using Vite + ReactJS and json-server (for now). I have plans to implement Micronaut and a MySQL database
+Created using Vite + ReactJS and json-server (for now). Plans are to implement Flask and a MySQL database.
 
 ## Requirements
 `node 22.12.0`

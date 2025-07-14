@@ -1,0 +1,31 @@
+# Vite output
+dist/
+build/
+
+# Dependencies
+node_modules/
+
+# Configuration and metadata
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Git
+.git/
+.gitignore
+
+# Vite-specific cache
+.vite/
+
+# Prettier logs / caches
+.prettierignore
+.prettierrc
+.prettiercache
+
+# Environment and IDE files
+.env
+*.log
+*.tmp
+.DS_Store
+.vscode/
+.idea/

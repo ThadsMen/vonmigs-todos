@@ -1,4 +1,9 @@
 # Vonmigs Todos
+Vonmigs Todos is a minimal yet powerful task management tool designed to streamline your weekly workflow. Whether you prefer a structured list or a dynamic Kanban board, Agenda gives you the flexibility to create, organize, and track tasks effortlessly.
+
+With support for custom sections (like columns in Jira), it's perfect for managing sprints, personal to-dos, or team projects—without the complexity of enterprise tools.
+
+
 Created using Vite + ReactJS and json-server (for now). Plans are to implement Flask and a MySQL database.
 
 ## Requirements

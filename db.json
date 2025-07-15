@@ -52,7 +52,7 @@
       "id": "7",
       "title": "Marketing Campaign",
       "description": "Launch a new marketing campaign to promote the upcoming product launch.",
-      "status": "test section",
+      "status": "Cancelled",
       "assignedTo": "Thadeus Meneses",
       "dueDate": "2025-01-07T17:00:00Z"
     },
@@ -60,7 +60,7 @@
       "id": "8",
       "title": "Design New UI",
       "description": "Redesign the user interface for the dashboard to improve user experience.",
-      "status": "test section",
+      "status": "Cancelled",
       "assignedTo": "Thadeus Meneses",
       "dueDate": "2025-01-07T17:00:00Z"
     }
@@ -81,10 +81,6 @@
     {
       "id": "4",
       "section": "Cancelled"
-    },
-    {
-      "id": "9ff7",
-      "section": "test section"
     }
   ]
 }

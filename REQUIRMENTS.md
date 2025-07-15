@@ -25,6 +25,7 @@
 - Search functionality
 
 ## Future Work
+- Backend integration with Flask and MySQL
 - AI summarization
 - Due date reminders and notifications
 - Integration with calendar apps

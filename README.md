@@ -7,3 +7,9 @@ Created using Vite + ReactJS and json-server (for now). Plans are to implement F
 `npm install` \
 `npx json-server db.json`\
 `npm run dev`
+
+
+## UI
+
+<img width="2546" height="1128" alt="image" src="https://github.com/user-attachments/assets/78cac3e5-de76-4149-b981-10d4100f10f0" />
+<img width="2526" height="1215" alt="image" src="https://github.com/user-attachments/assets/45bd3785-d6b7-404b-96ea-962eadb17f2d" />

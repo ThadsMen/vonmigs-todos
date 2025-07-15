@@ -61,21 +61,6 @@ export async function getSections() {
   }
 }
 
-// export async function getBoardData(){
-//   try{
-//     const response = await axios.get('http://localhost:3000/boardData')
-//     return response.data
-//   }catch(error){
-//     console.log(error)
-//   }
-// }
-
-// export async function postTask(task){
-//   return axios.post("http://localhost:3000/tasks",task)
-//   .then((res)=>res)
-//   .catch((err)=>console.log(err))
-// }
-
 export async function postTask(task) {
   try {
     const response = await axios.post('http://localhost:3000/tasks', task)
@@ -91,6 +76,15 @@ export async function updateTask(task) {
       `http://localhost:3000/tasks/${task.id}`,
       task
     )
+    return response.data
+  } catch (error) {
+    return error
+  }
+}
+
+export async function postSection(section) {
+  try {
+    const response = await axios.post('http://localhost:3000/sections', section)
     return response.data
   } catch (error) {
     return error

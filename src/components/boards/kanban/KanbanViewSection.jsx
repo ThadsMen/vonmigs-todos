@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useDrop } from 'react-dnd'
 import { ItemTypes } from './dragtypes'
@@ -16,10 +15,12 @@ function KanbanSection(props) {
     }),
   }))
   return (
-    <div className="flex-col">
-      <div className="text-2xl pb-2">{section}</div>
+    <div className="flex flex-col items-center">
+      <div className="text-2xl pb-2 w-fit">{section}</div>
       <div
-        className="w-80 h-screen border-2 border-[#94603F] rounded-[1vw] pt-5"
+        className={`w-80 h-screen rounded-[1vw] pt-5 ${
+          isOver ? 'bg-neutral-600' : ''
+        }`}
         ref={drop}
       >
         {taskIds.map((taskId) => (

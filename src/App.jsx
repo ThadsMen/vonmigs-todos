@@ -1,28 +1,25 @@
-/* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react'
-import Header from './Header'
-import ListViewContainer from './boards/list/ListViewContainer'
-import KanbanViewContainer from './boards/kanban/KanbanViewContainer'
+import ListViewContainer from './components/boards/list/ListViewContainer'
+import KanbanViewContainer from './components/boards/kanban/KanbanViewContainer'
 import { getSections, getTasks, updateTask } from './services/apiService'
+import Header from './components/Header'
 
 function App() {
   const [isKanbanView, setIsKanbanView] = useState(true)
   const [tasks, setTasks] = useState([])
   const [sectionsData, setSectionsData] = useState({})
 
+  // Fetch tasks and sections data on initial render
   useEffect(() => {
-    initializeData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const setup = async () => {
+      const tasks = await getTasks()
+      setTasks(tasks)
+
+      const sectionsData = await initializeSectionsData(tasks)
+      setSectionsData(sectionsData)
+    }
+    setup()
   }, [])
-
-  // initialize the tasks and sectionsData variables
-  const initializeData = async () => {
-    const tasks = await getTasks()
-    setTasks(tasks)
-
-    const sectionsData = await initializeSectionsData(tasks)
-    setSectionsData(sectionsData)
-  }
 
   const initializeSectionsData = async (tasks) => {
     // get the list of sections
@@ -70,26 +67,27 @@ function App() {
     setIsKanbanView((prevState) => !prevState)
   }
   return (
-    <>
+    <div>
       <Header
         handleToggle={handleToggle}
         isKanbanView={isKanbanView}
         setTasks={setTasks}
         setSectionsData={setSectionsData}
       />
-
-      {isKanbanView ? (
-        <KanbanViewContainer
-          tasks={tasks}
-          sectionsData={sectionsData}
-          setTasks={setTasks}
-          setSectionsData={setSectionsData}
-          updateSectionsData={updateSectionsData}
-        />
-      ) : (
-        <ListViewContainer />
-      )}
-    </>
+      <div className="mx-24 my-10">
+        {isKanbanView ? (
+          <KanbanViewContainer
+            tasks={tasks}
+            sectionsData={sectionsData}
+            setTasks={setTasks}
+            setSectionsData={setSectionsData}
+            updateSectionsData={updateSectionsData}
+          />
+        ) : (
+          <ListViewContainer />
+        )}
+      </div>
+    </div>
   )
 }
 

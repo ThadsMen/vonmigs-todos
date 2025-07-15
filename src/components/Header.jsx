@@ -1,17 +1,24 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react'
 import { CgAddR } from 'react-icons/cg'
+import { HiOutlineViewBoards } from 'react-icons/hi'
 import { VscAccount, VscBellDot, VscComment } from 'react-icons/vsc'
 import { IconContext } from 'react-icons'
 import TaskForm from './TaskForm'
+import SectionForm from './SectionForm'
 
 function Header(props) {
   const { handleToggle, isKanbanView, setTasks, setSectionsData } = props
 
-  const [isOpen, setIsOpen] = useState(false)
+  const [isTaskForm, setIsTaskForm] = useState(false)
+  const [isSectionForm, setIsSectionForm] = useState(false)
 
-  const openForm = () => setIsOpen(true)
-  const closeForm = () => setIsOpen(false)
+  const openTaskForm = () => setIsTaskForm(true)
+  const closeTaskForm = () => setIsTaskForm(false)
+
+  const openSectionForm = () => setIsSectionForm(true)
+  const closeSectionForm = () => setIsSectionForm(false)
+
   return (
     <>
       <div className="flex flex-row justify-between items-center ">
@@ -39,17 +46,33 @@ function Header(props) {
             {isKanbanView ? 'List View' : 'Kanban View'}
           </button>
         </div>
-        <IconContext.Provider value={{ size: '50px' }}>
-          <button onClick={openForm}>
-            <CgAddR />
-          </button>
-        </IconContext.Provider>
+        <div>
+          {isKanbanView && (
+            <IconContext.Provider value={{ size: '50px' }}>
+              <button onClick={openSectionForm}>
+                <HiOutlineViewBoards />
+              </button>
+            </IconContext.Provider>
+          )}
+          <IconContext.Provider value={{ size: '50px' }}>
+            <button onClick={openTaskForm}>
+              <CgAddR />
+            </button>
+          </IconContext.Provider>
+        </div>
       </div>
-      {isOpen && (
+      {isTaskForm && (
         <TaskForm
-          closeForm={closeForm}
-          isOpen={isOpen}
+          closeForm={closeTaskForm}
+          isOpen={isTaskForm}
           setTasks={setTasks}
+          setSectionsData={setSectionsData}
+        />
+      )}
+      {isSectionForm && (
+        <SectionForm
+          isOpen={isSectionForm}
+          closeForm={closeSectionForm}
           setSectionsData={setSectionsData}
         />
       )}

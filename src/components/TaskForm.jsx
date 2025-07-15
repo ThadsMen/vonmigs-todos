@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
-import { postTask } from './services/apiService'
+import { postTask } from '../services/apiService'
 
 export default function TaskForm({
   isOpen,

@@ -12,7 +12,7 @@ function KanbanViewContainer(props) {
   return (
     <>
       <DndProvider backend={HTML5Backend}>
-        <div className="flex justify-evenly h-screen">
+        <div className="flex h-screen gap-3 justify-center">
           {sectionsData &&
             Object.keys(sectionsData).map((section) => (
               <KanbanSection

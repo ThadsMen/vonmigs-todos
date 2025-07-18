@@ -23,7 +23,8 @@
 - [x] Sections must support droppable zones
 - Users should be able to collaborate in real time
 - Search functionality
-
+- Loading Skeleton is displayed while fetching data
+- Error state displayed if there are issues fetching data
 ## Future Work
 - Backend integration with Flask and MySQL
 - AI summarization

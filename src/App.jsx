@@ -4,19 +4,31 @@ import KanbanViewContainer from './components/boards/kanban/KanbanViewContainer'
 import { getSections, getTasks, updateTask } from './services/apiService'
 import Header from './components/Header'
 
+// Sleep utility function
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+
 function App() {
   const [isKanbanView, setIsKanbanView] = useState(true)
   const [tasks, setTasks] = useState([])
   const [sectionsData, setSectionsData] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   // Fetch tasks and sections data on initial render
   useEffect(() => {
     const setup = async () => {
-      const tasks = await getTasks()
-      setTasks(tasks)
-
-      const sectionsData = await initializeSectionsData(tasks)
-      setSectionsData(sectionsData)
+      try {
+        const tasks = await getTasks()
+        await sleep(1000)
+        setTasks(tasks)
+        const sectionsData = await initializeSectionsData(tasks)
+        setSectionsData(sectionsData)
+      } catch (error) {
+        console.log('Error fetching tasks or sections:', error)
+        setError(true)
+      } finally {
+        setIsLoading(false)
+      }
     }
     setup()
   }, [])
@@ -66,28 +78,43 @@ function App() {
   const handleToggle = () => {
     setIsKanbanView((prevState) => !prevState)
   }
+
   return (
-    <div>
-      <Header
-        handleToggle={handleToggle}
-        isKanbanView={isKanbanView}
-        setTasks={setTasks}
-        setSectionsData={setSectionsData}
-      />
-      <div className="mx-24 my-10">
-        {isKanbanView ? (
-          <KanbanViewContainer
-            tasks={tasks}
-            sectionsData={sectionsData}
+    <>
+      {isLoading && (
+        <div className="flex h-screen items-center justify-center">
+          <div className="h-24 w-24 animate-spin rounded-full border-4 border-[#94603F]  border-t-transparent"></div>
+        </div>
+      )}
+      {error && (
+        <div className="mx-auto w-full max-w-sm p-4">
+          <p className="text-red-600">Error fetching tasks or sections.</p>
+        </div>
+      )}
+      {!isLoading && !error && (
+        <>
+          <Header
+            handleToggle={handleToggle}
+            isKanbanView={isKanbanView}
             setTasks={setTasks}
             setSectionsData={setSectionsData}
-            updateSectionsData={updateSectionsData}
           />
-        ) : (
-          <ListViewContainer />
-        )}
-      </div>
-    </div>
+          <div className="mx-24 my-10">
+            {isKanbanView ? (
+              <KanbanViewContainer
+                tasks={tasks}
+                sectionsData={sectionsData}
+                setTasks={setTasks}
+                setSectionsData={setSectionsData}
+                updateSectionsData={updateSectionsData}
+              />
+            ) : (
+              <ListViewContainer />
+            )}
+          </div>
+        </>
+      )}
+    </>
   )
 }
 

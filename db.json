@@ -36,7 +36,7 @@
       "id": "5",
       "title": "Server Maintenance",
       "description": "Perform scheduled maintenance on the server and check for system updates.",
-      "status": "In Progress",
+      "status": "Completed",
       "assignedTo": "Thadeus Meneses",
       "dueDate": "2025-01-07T17:00:00Z"
     },
@@ -44,7 +44,7 @@
       "id": "6",
       "title": "Bug Fixes",
       "description": "Fix critical bugs reported by QA in the current version of the application.",
-      "status": "Completed",
+      "status": "In Progress",
       "assignedTo": "Thadeus Meneses",
       "dueDate": "2025-01-07T17:00:00Z"
     },
@@ -52,7 +52,7 @@
       "id": "7",
       "title": "Marketing Campaign",
       "description": "Launch a new marketing campaign to promote the upcoming product launch.",
-      "status": "Cancelled",
+      "status": "In Progress",
       "assignedTo": "Thadeus Meneses",
       "dueDate": "2025-01-07T17:00:00Z"
     },

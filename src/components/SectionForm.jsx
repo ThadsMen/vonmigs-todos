@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { postSection } from '../services/apiService'
 
-export default function SectionForm({ isOpen, closeForm }) {
+export default function SectionForm({ isOpen, closeForm, setSectionsData }) {
   const [title, setTitle] = useState('')
 
   if (!isOpen) return null
@@ -13,7 +13,13 @@ export default function SectionForm({ isOpen, closeForm }) {
       section: title,
     }
     const section = await postSection(newSection)
-    console.log('New Section Created:', section)
+
+    setSectionsData((prevState) => {
+      return {
+        ...prevState,
+        [section.section]: [], // Initialize the new section with an empty array
+      }
+    })
     closeForm()
   }
 

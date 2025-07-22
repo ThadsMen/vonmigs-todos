@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
-import ListViewContainer from './components/boards/list/ListViewContainer'
+import ListViewContainer from './components/list/ListViewContainer'
 import KanbanViewContainer from './components/kanban/KanbanViewContainer'
+import LoadingCircle from './components/LoadingCircle'
+import ErrorState from './components/ErrorState'
 import { getSections, getTasks, updateTask } from './services/apiService'
 import Header from './components/Header'
-
-// Sleep utility function
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+import { sleep } from './utils/sleep'
+import { initializeSectionsData } from './utils/initializeSectionsData'
 
 function App() {
   const [isKanbanView, setIsKanbanView] = useState(true)
@@ -18,10 +19,13 @@ function App() {
   useEffect(() => {
     const setup = async () => {
       try {
-        const tasks = await getTasks()
         await sleep(1000)
+
+        const tasks = await getTasks()
         setTasks(tasks)
-        const sectionsData = await initializeSectionsData(tasks)
+        const sections = await getSections()
+
+        const sectionsData = initializeSectionsData(tasks, sections)
         setSectionsData(sectionsData)
       } catch (error) {
         console.log('Error fetching tasks or sections:', error)
@@ -32,23 +36,6 @@ function App() {
     }
     setup()
   }, [])
-
-  const initializeSectionsData = async (tasks) => {
-    // get the list of sections
-    const sections = await getSections()
-    // create empty sectionsData object
-    // each section will be a key that points to an array of associated taskIds
-    let sectionsData = {}
-    // iterate through the sections list
-    sections.forEach((section) => {
-      // given the section, find tasks that have the same status, and return only the task ids
-      let filteredTasks = tasks
-        .filter((task) => task.status == section.section)
-        .map((task) => task.id)
-      sectionsData[section.section] = filteredTasks
-    })
-    return sectionsData
-  }
 
   // updates task with new section and updates section data to maintain order
   const updateSectionsData = async (task, newStatus) => {
@@ -75,26 +62,18 @@ function App() {
     })
   }
 
-  const handleToggle = () => {
+  const handleBoardViewToggle = () => {
     setIsKanbanView((prevState) => !prevState)
   }
 
   return (
     <>
-      {isLoading && (
-        <div className="flex h-screen items-center justify-center">
-          <div className="h-24 w-24 animate-spin rounded-full border-4 border-[#94603F]  border-t-transparent"></div>
-        </div>
-      )}
-      {error && (
-        <div className="mx-auto w-full max-w-sm p-4">
-          <p className="text-red-600">Error fetching tasks or sections.</p>
-        </div>
-      )}
+      {isLoading && <LoadingCircle />}
+      {error && <ErrorState />}
       {!isLoading && !error && (
         <>
           <Header
-            handleToggle={handleToggle}
+            handleBoardViewToggle={handleBoardViewToggle}
             isKanbanView={isKanbanView}
             setTasks={setTasks}
             setSectionsData={setSectionsData}

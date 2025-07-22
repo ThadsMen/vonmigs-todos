@@ -8,7 +8,8 @@ import TaskForm from './TaskForm'
 import SectionForm from './SectionForm'
 
 function Header(props) {
-  const { handleToggle, isKanbanView, setTasks, setSectionsData } = props
+  const { handleBoardViewToggle, isKanbanView, setTasks, setSectionsData } =
+    props
 
   const [isTaskForm, setIsTaskForm] = useState(false)
   const [isSectionForm, setIsSectionForm] = useState(false)
@@ -41,7 +42,7 @@ function Header(props) {
           </IconContext.Provider>
           <button
             className="bg-[#646669] rounded-lg px-5"
-            onClick={handleToggle}
+            onClick={handleBoardViewToggle}
           >
             {isKanbanView ? 'List View' : 'Kanban View'}
           </button>

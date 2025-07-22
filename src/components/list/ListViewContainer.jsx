@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import ListViewItem from './ListViewItem'
-import { getTasks } from '../../../services/apiService'
+import { getTasks } from '../../services/apiService'
 
 function ListViewContainer() {
   const [tasks, setTasks] = useState([])

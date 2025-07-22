@@ -6,7 +6,6 @@ function KanbanViewItem(props) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.TASK,
     item: task,
-    end: (item) => console.log(item),
     colect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),

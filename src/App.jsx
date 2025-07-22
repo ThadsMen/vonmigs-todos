@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import ListViewContainer from './components/boards/list/ListViewContainer'
-import KanbanViewContainer from './components/boards/kanban/KanbanViewContainer'
+import KanbanViewContainer from './components/kanban/KanbanViewContainer'
 import { getSections, getTasks, updateTask } from './services/apiService'
 import Header from './components/Header'
 
